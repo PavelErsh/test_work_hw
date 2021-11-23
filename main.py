@@ -1,7 +1,7 @@
 import arcade
 import random
 # задаем ширину, высоту и заголовок окна
-SCREEN_WIDTH = 1200
+SCREEN_WIDTH = 1400
 
 SCREEN_HEIGHT = 600
 
@@ -24,15 +24,19 @@ class OurGame(arcade.Window):
 
     # начальные значения
     def setup(self):
+
         self.rand_numbers = []
         self.text.center_x = []
         self.text.center_y = []
         self.text.change_x = 0
+
         for i in range(20):
-            rectange = Rectangle("square.png", 0.2)
-            rectange.center_x = (50 * i+ 110) + 30
+            self.margin = 30
+            self.position = 400
+            rectange = Rectangle("square.png", 0.1)
+            rectange.center_x = self.margin * i + self.position
             self.text.center_x.append(rectange.center_x-6)
-            rectange.center_y = SCREEN_HEIGHT / 2
+            rectange.center_y = 540
             self.text.center_y.append(rectange.center_y-4)
             self.rectangles.append(rectange)
 
@@ -44,7 +48,7 @@ class OurGame(arcade.Window):
         arcade.set_background_color(arcade.color.WHITE)
         self.rectangles.draw()
         for i in range(20):
-            arcade.draw_text(f"{self.rand_numbers[i]}",self.text.center_x[i], self.text.center_y[i], arcade.color.BLACK, 20 )
+            arcade.draw_text(f"{self.rand_numbers[i]}",self.text.center_x[i], self.text.center_y[i], arcade.color.BLACK, 10 )
 
     # логика
     def update(self, delta_time):
