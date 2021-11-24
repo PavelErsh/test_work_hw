@@ -1,5 +1,6 @@
 import arcade
 import random
+import time
 # задаем ширину, высоту и заголовок окна
 SCREEN_WIDTH = 1400
 
@@ -18,7 +19,6 @@ def merge_two_lists( a, b):
         else:
             c.append(b[j])
             j += 1
-
     if i < len(a):
         c += a[i:]
 
@@ -29,11 +29,13 @@ def merge_two_lists( a, b):
 
 
 def merge_sort( s):
+    print("Splitting ", s)
     if len(s) == 1:
         return s
     middle = len(s) // 2
     left = merge_sort(s[:middle])
     right = merge_sort(s[middle:])
+    print("Merging ", s)
     return merge_two_lists(left, right)
 
 
@@ -87,10 +89,9 @@ class OurGame(arcade.Window):
 
         for i in range(20):
             arcade.draw_text(f"{sort_arr[i]}",self.text.center_x[i], self.text.center_y[i]-60, arcade.color.BLACK, 10 )
-
+        time.sleep(5)
+        print("---------------------------------------------------------------------")
     # логика
-    def drow_array(self):
-
     def update(self, delta_time):
         pass
 
