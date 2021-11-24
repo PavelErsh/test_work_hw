@@ -24,18 +24,20 @@ def merge_two_lists( a, b):
 
     if j < len(b):
         c += b[j:]
-
+    #print(c)
     return c
 
 
 def merge_sort( s):
-    print("Splitting ", s)
+    #print("Splitting ", s)
     if len(s) == 1:
         return s
     middle = len(s) // 2
     left = merge_sort(s[:middle])
+    print(left)
     right = merge_sort(s[middle:])
-    print("Merging ", s)
+    print(right)
+    #print("Merging ", s)
     return merge_two_lists(left, right)
 
 
@@ -64,9 +66,9 @@ class OurGame(arcade.Window):
         self.text.change_x = 0
 
         for j in range(20):
-            self.rand_numbers.append(random.randint(1, 10))
+            self.rand_numbers.append(random.randint(1, 30))
 
-
+        self.sort_arr = merge_sort(self.rand_numbers)
     # отрисовка объектов
     def on_draw(self):
         for i in range(20):
@@ -85,12 +87,12 @@ class OurGame(arcade.Window):
         for i in range(20):
             arcade.draw_text(f"{self.rand_numbers[i]}",self.text.center_x[i], self.text.center_y[i], arcade.color.BLACK, 10 )
 
-        sort_arr = merge_sort(self.rand_numbers)
 
         for i in range(20):
-            arcade.draw_text(f"{sort_arr[i]}",self.text.center_x[i], self.text.center_y[i]-60, arcade.color.BLACK, 10 )
-        time.sleep(5)
-        print("---------------------------------------------------------------------")
+            arcade.draw_text(f"{self.sort_arr[i]}",self.text.center_x[i], self.text.center_y[i]-60, arcade.color.BLACK, 10 )
+
+        #time.sleep(5)
+        #print("---------------------------------------------------------------------")
     # логика
     def update(self, delta_time):
         pass
