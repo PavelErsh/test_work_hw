@@ -1,4 +1,5 @@
 import arcade
+
 import random
 import time
 # задаем ширину, высоту и заголовок окна
@@ -24,12 +25,11 @@ def merge_two_lists( a, b):
 
     if j < len(b):
         c += b[j:]
-    #print(c)
+    print(c)
     return c
 
 
 def merge_sort( s):
-    #print("Splitting ", s)
     if len(s) == 1:
         return s
     middle = len(s) // 2
@@ -37,7 +37,6 @@ def merge_sort( s):
     print(left)
     right = merge_sort(s[middle:])
     print(right)
-    #print("Merging ", s)
     return merge_two_lists(left, right)
 
 
@@ -64,6 +63,8 @@ class OurGame(arcade.Window):
         self.text.center_x = []
         self.text.center_y = []
         self.text.change_x = 0
+        self.sound = arcade.load_sound("sound.wav")
+        self.play_sound = True
 
         for j in range(20):
             self.rand_numbers.append(random.randint(1, 30))
@@ -91,8 +92,10 @@ class OurGame(arcade.Window):
         for i in range(20):
             arcade.draw_text(f"{self.sort_arr[i]}",self.text.center_x[i], self.text.center_y[i]-60, arcade.color.BLACK, 10 )
 
-        #time.sleep(5)
-        #print("---------------------------------------------------------------------")
+        if self.play_sound == True:
+            arcade.play_sound(self.sound)
+            self.play_sound = False
+
     # логика
     def update(self, delta_time):
         pass
